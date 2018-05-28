@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <setParameter name="IIS Web Application Name" value="ligabasquetbolpresa" />
+  <setParameter name="DefaultConnection-Web.config Connection String" value="Data Source=moranh.database.windows.net;Initial Catalog=LBP1;User ID=moranh;Password=H3ct0rM25Fh" />
+  <setParameter name="LBPEntities-Web.config Connection String" value="metadata=res://*/Models.Model.csdl|res://*/Models.Model.ssdl|res://*/Models.Model.msl;provider=System.Data.SqlClient;provider connection string=&quot;Data Source=moranh.database.windows.net;Initial Catalog=LBP1;User ID=moranh;Password=H3ct0rM25Fh&quot;" />
+</parameters>
