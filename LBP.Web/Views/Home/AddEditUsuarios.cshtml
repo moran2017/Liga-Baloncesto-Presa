@@ -1,0 +1,85 @@
+﻿@model LBP.Web.ViewModels.AddEditUsuariosViewModel
+
+@{
+    ViewBag.Title = Model.UsuarioId.HasValue ? "Editar Usuario" : "Agregar Usuario";
+}
+
+    <div class="container">
+        <div class="card card-register mx-auto mt-5">
+            <div class="card-header">@ViewBag.Title</div>
+            <div class="card-body">
+                <form method="post" action="@Url.Action("AddEditUsuarios")">
+                    @Html.HiddenFor(X => X.UsuarioId)
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="exampleInputName">Nombre</label>
+                                @Html.TextBoxFor(X => X.Nombre, new { @class = "form-control",
+                               placeholder = "Ingresa tu nombre",
+                               style = "text-transform:uppercase",
+                               name = "nombre"
+                           })
+                            </div>
+                            <div class="col-md-6">
+                                <label for="exampleInputLastName">Paterno</label>
+                               @Html.TextBoxFor(X => X.Paterno, new { @class = "form-control",
+                              placeholder = "Ingresa tu Paterno",
+                              style = "text-transform:uppercase",
+                              name = "nombre"
+                          })
+                            </div>
+                            <div class="col-md-6">
+                                <label for="exampleInputLastName">Materno</label>
+                                @Html.TextBoxFor(X => X.Materno, new { @class = "form-control",
+                               placeholder = "Ingresa tu Materno",
+                               style = "text-transform:uppercase",
+                               name = "nombre"
+                           })
+                            </div>
+                            <div class="col-md-6">
+                                <label for="exampleInputLastName">Usuario</label>
+                                @Html.TextBoxFor(X => X.Usuario, new { @class = "form-control",
+                               placeholder = "Ingresa tu Usuario",
+                               style = "text-transform:uppercase",
+                               type = "text"
+                           })
+                            </div>
+                            <div class="col-md-6">
+                                <label for="exampleInputLastName">Password</label>
+                                @Html.TextBoxFor(X => X.Password, new { @class = "form-control",
+                                placeholder = "Ingresa tu Password",
+                               style = "text-transform:uppercase",
+                               type = "password"
+                           })
+                            </div>
+                            <div class="col-md-6">
+                                <label for="exampleInputLastName">Confirma tu Password</label>
+                                @Html.TextBoxFor(X => X.Password, new
+                           {
+                               @class = "form-control",
+                               placeholder = "Confirma tu Password",
+                               style = "text-transform:uppercase",
+                               type = "password"
+                           })
+                            </div>
+                            <div class="col-md-6">
+                                <label for="exampleInputLastName">Estatus</label>
+                                <label for="exampleInputLastName">Rol</label>
+                                @Html.DropDownListFor(X => X.EstatusId, new SelectList(Model.LstEstatus, "EstatusId", "Descripcion"), "--------Selecione un Estatus------", new { @class = "form-control" })
+                            </div>
+                            <div class="col-md-6">
+                                <label for="exampleInputLastName">Rol</label>
+                                @Html.DropDownListFor(X => X.RolId, new SelectList(Model.LstRoles, "RolId", "Descripcion"), "--------Selecione un Rol------", new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary ">
+                        <i class="fa fa-save"></i>&nbsp;Guardar
+                    </button>
+                    <a class="btn btn-default" href="@Url.Action("LstUsuarios")">
+                        <i class="fa fa-arrow-back"></i>&nbsp;Cancelar
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>

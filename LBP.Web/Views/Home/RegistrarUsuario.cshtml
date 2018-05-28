@@ -1,0 +1,138 @@
+﻿@model LBP.Web.ViewModels.Presentacion.RegistarViewModel
+@{
+    Layout = null;
+    ViewBag.Title = "Registrar Usuario";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Registro LBP</title>
+    <!-- Bootstrap core CSS-->
+    <link href="@Url.Content("~/Content/vendor/bootstrap/css/bootstrap.min.css")" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="@Url.Content("~/Content/vendor/font-awesome/css/font-awesome.min.css")" rel="stylesheet" type="text/css">
+    <!-- Custom styles for this template-->
+    <link href="@Url.Content("~/Content/css/sb-admin.css")" rel="stylesheet">
+</head>
+<body class="bg-dark">
+    <div class="container">
+        <div class="card card-register mx-auto mt-5">
+            <div class="card-header">Registar LBP</div>
+            <div class="card-body">
+                <form method="post" action="@Url.Action("RegistrarUsuario")">
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="exampleInputNombre">Nombre</label>
+                                @Html.TextBoxFor(X => X.Nombre.ToUpper(), new
+                           {
+                               @class = "form-control",
+                               placeholder = "Ingresa tu nombre",
+                               style = "text-transform:uppercase",
+                               type = "text",
+                               name = "nombre"
+                           })
+                                <div class="container">
+                                    <p class="text-info"> @Html.ValidationMessageFor(model => model.Nombre)</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="exampleInputPaterno">Paterno</label>
+                                @Html.TextBoxFor(X => X.Paterno.ToUpper(), new
+                           {
+                               @class = "form-control",
+                               placeholder = "Paterno",
+                               style = "text-transform:uppercase",
+                               type = "text",
+                               name = "nombre"
+                           })
+                                <div class="container">
+                                    <p class="text-info"> @Html.ValidationMessageFor(model => model.Paterno)</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="exampleInputMaterno">Materno</label>
+                                @Html.TextBoxFor(X => X.Materno.ToUpper(), new
+                           {
+                               @class = "form-control",
+
+                               placeholder = "Materno",
+                               style = "text-transform:uppercase",
+                               type = "text",
+                               name = "nombre"
+                           })
+                                <div class="container">
+                                    <p class="text-info"> @Html.ValidationMessageFor(model => model.Materno)</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="exampleInputUsuario">Usuario</label>
+                                @Html.TextBoxFor(X => X.Usuario.ToUpper(), new
+                           {
+                               @class = "form-control",
+
+                               placeholder = "Ingresa tu Usuario",
+                               style = "text-transform:uppercase",
+                               type = "text",
+                               name = "nombre"
+                           })
+                                <div class="container">
+                                    <p class="text-info"> @Html.ValidationMessageFor(model => model.Usuario)</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="exampleInputPassword1">Password</label>
+                                @Html.TextBoxFor(X => X.Password, new
+                           {
+                               @class = "form-control",
+
+                               placeholder = "Ingresa tu Password",
+                               type = "password",
+                               name = "nombre"
+                           })
+                                <div class="container">
+                                    <p class="text-info"> @Html.ValidationMessageFor(model => model.Password)</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="exampleConfirmPassword">Confirma password</label>
+                                @Html.TextBoxFor(X => X.Password, new
+                           {
+                               @class = "form-control",
+
+                               placeholder = "Confirma tu Password",
+                               type = "password",
+                               name="nombre"
+                           })
+                                <div class="container">
+                                    <p class="text-info"> @Html.ValidationMessageFor(model => model.Password)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-block">Registrar</button>
+                </form>
+                <div class="container">
+                    <p class="text-info"> @Html.ValidationMessageFor(model => model.UsuExiste)</p>
+                </div>
+                <div class="text-center">
+                    <a class="d-block small mt-3" href="@Url.Action("Login")">Login</a>
+                    <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap core JavaScript-->
+    <script src="@Url.Content("~/Content/vendor/jquery/jquery.min.js")"></script>
+    <script src="@Url.Content("~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js")"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="@Url.Content("~/Content/vendor/jquery-easing/jquery.easing.min.js")"></script>
+</body>
+</html>
+

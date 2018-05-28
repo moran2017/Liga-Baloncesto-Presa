@@ -1,0 +1,133 @@
+﻿@model LBP.Web.ViewModels.Partido.LstPartidosViewModel
+@{
+    ViewBag.Title = "Lista de Partidos";
+    String strRol = String.Empty;
+    if (Session["objUsuario"] != null)
+    {
+        strRol = ((LBP.Web.Models.Usuarios)Session["objUsuario"]).Roles.Acronimo;
+    }
+}
+
+
+@if (strRol == "DES" || strRol == "ADM")
+{
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa form-search"></i> @ViewBag.Title
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Horario</th>
+                            <th>Local</th>
+                            <th>Puntos Local</th>
+                            <th>Visitante</th>
+                            <th>Puntos Visitante</th>
+                            <th>Jornada</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Horario</th>
+                            <th>Local</th>
+                            <th>Puntos Local</th>
+                            <th>Visitante</th>
+                            <th>Puntos Visitante</th>
+                            <th>Jornada</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model.LstPartidos)
+                {
+                            <tr>
+                                <td>@item.Horario</td>
+                                <td>@item.Equipos.Nombre</td>
+                                <td>@item.PuntosLocal</td>
+                                <td>@item.Equipos1.Nombre</td>
+                                <td>@item.PuntosVisitante</td>
+                                <td>@item.Jornadas.Descripcion</td>
+                                <td>
+                                    <a href="@Url.Action("AddEditPartidos", new { PartidoId = item.PartidoId })" class="btn btn-default">
+                                        <i class="fa fa-edit"></i>&nbsp; Editar
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("DeletePartidos", new { PartidoId = item.PartidoId })" class="btn btn-default">
+                                        <i class="fa fa-trash-o"></i>&nbsp; Eliminar
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer small text-muted">@DateTime.Now.ToString()</div>
+        <div>
+            <a class="btn btn-primary" href="@Url.Action("AddEditPartidos")">
+                <i class="fa fa-plus"></i>&nbsp; Agregar
+            </a>
+        </div>
+    </div>
+}
+else if (strRol == "JUG" || strRol == "REP")
+{
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa form-search"></i> @ViewBag.Title
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Horario</th>
+                            <th>Local</th>
+                            <th>Puntos Local</th>
+                            <th>Visitante</th>
+                            <th>Puntos Visitante</th>
+                            <th>Jornada</th>
+
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Horario</th>
+                            <th>Local</th>
+                            <th>Puntos Local</th>
+                            <th>Visitante</th>
+                            <th>Puntos Visitante</th>
+                            <th>Jornada</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model.LstPartidos)
+                {
+                            <tr>
+                                <td>@item.Horario</td>
+                                <td>@item.Equipos.Nombre</td>
+                                <td>@item.PuntosLocal</td>
+                                <td>@item.Equipos1.Nombre</td>
+                                <td>@item.PuntosVisitante</td>
+                                <td>@item.Jornadas.Descripcion</td>
+
+
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer small text-muted">@DateTime.Now.ToString()</div>
+ 
+    </div>
+}

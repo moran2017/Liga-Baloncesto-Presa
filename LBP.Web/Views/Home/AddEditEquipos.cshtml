@@ -1,0 +1,35 @@
+﻿@model LBP.Web.ViewModels.AddEditEquiposViewModel
+
+@{
+    ViewBag.Title = Model.EquipoId.HasValue ? "Editar Equipo" : "Agregar Equipo";
+
+}
+
+<div class="container">
+    <div class="card card-register mx-auto mt-5">
+        <div class="card-header">Agregar Usuario</div>
+        <div class="card-body">
+            <form method="post" action="@Url.Action("AddEditEquipos")">
+                @Html.HiddenFor(X => X.EquipoId)
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <label for="exampleInputName">Nombre</label>
+                            @Html.TextBoxFor(X => X.Nombre, new { @class = "form-control",
+                           placeholder = "Ingresa el Nombre",
+                           style = "text-transform:uppercase",
+                           type = "text"
+                       })
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary ">
+                    <i class="fa fa-save"></i>&nbsp;Guardar
+                </button>
+                <a class="btn btn-default" href="@Url.Action("LstEquipos")">
+                    <i class="fa fa-arrow-back"></i>&nbsp;Cancelar
+                </a>
+            </form>
+        </div>
+    </div>
+</div>

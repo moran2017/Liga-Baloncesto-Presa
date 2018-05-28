@@ -1,0 +1,64 @@
+﻿@model LBP.Web.ViewModels.Jugador.AddEditJugadoresViewModel
+
+@{
+    ViewBag.Title = Model.JugadorId.HasValue ? "Editar Jugador" : "Agregar Jugador";
+
+}
+
+<div class="container">
+    <div class="card card-register mx-auto mt-5">
+        <div class="card-header">@ViewBag.Title</div>
+        <div class="card-body">
+            <form method="post" action="@Url.Action("AddEditJugadores")">
+                @Html.HiddenFor(X => X.JugadorId)
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <label for="exampleInputName">Nombre</label>
+                            @Html.TextBoxFor(X => X.Nombre, new { @class = "form-control",
+                           placeholder = "Ingresa el Nombre",
+                           style = "text-transform:uppercase",
+                           type = "text"
+                       })
+                        </div>
+                        <div class="col-md-6">
+                            <label for="exampleInputLastName">Paterno</label>
+                            @Html.TextBoxFor(X => X.Paterno, new { @class = "form-control",
+                           placeholder = "Ingresa el Apellido Paterno",
+                           style = "text-transform:uppercase",
+                           type = "text"
+                       })
+                        </div>
+                        <div class="col-md-6">
+                            <label for="exampleInputLastName">Materno</label>
+                            @Html.TextBoxFor(X => X.Materno, new { @class = "form-control",
+                           placeholder = "Ingresa el Apellido Materno",
+                           style = "text-transform:uppercase",
+                           type = "text"
+                       })
+                        </div>
+                        <div class="col-md-6">
+                            <label for="exampleInputLastName">Numero</label>
+                            @Html.TextBoxFor(X => X.Numero, new { @class = "form-control",
+                           placeholder = "Ingresa el Número de Camisa",
+                           style = "text-transform:uppercase",
+                           type = "text"
+                       })
+                        </div>
+                      
+                        <div class="col-md-6">
+                            <label for="exampleInputLastName">Equipo</label>
+                            @Html.DropDownListFor(X => X.EquipoId, new SelectList(Model.LstEquipos, "EquipoId", "Nombre"), "--------Selecione un Equipo------", new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary ">
+                    <i class="fa fa-save"></i>&nbsp;Guardar
+                </button>
+                <a class="btn btn-default" href="@Url.Action("LstJugadores")">
+                    <i class="fa fa-arrow-back"></i>&nbsp;Cancelar
+                </a>
+            </form>
+        </div>
+    </div>
+</div>

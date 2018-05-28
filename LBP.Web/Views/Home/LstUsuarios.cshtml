@@ -1,0 +1,245 @@
+﻿@model LBP.Web.ViewModels.LstUsuariosViewModel
+
+@{
+    ViewBag.Title = "Lista de Usuarios";
+
+    String strRol = String.Empty;
+
+    if (Session["objUsuario"] != null)
+    {
+        strRol = ((LBP.Web.Models.Usuarios)Session["objUsuario"]).Roles.Acronimo;
+    }
+}
+
+@if (strRol == "DES")
+{
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-table"></i> @ViewBag.Title
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Paterno</th>
+                            <th>Materno</th>
+                            <th>Usaurio</th>
+                            <th>Password</th>
+                            <th>Estatus</th>
+                            <th>Rol</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Paterno</th>
+                            <th>Materno</th>
+                            <th>Usaurio</th>
+                            <th>Password</th>
+                            <th>Estatus</th>
+                            <th>Rol</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model.LstUsuarios)
+                        {
+                            <tr>
+                                <td>@item.Nombre</td>
+                                <td>@item.Paterno</td>
+                                <td>@item.Materno</td>
+                                <td>@item.Usuario</td>
+                                <td>@item.Password</td>
+                                <td>@item.Estatus.Descripcion</td>
+                                <td>@item.Roles.Descripcion</td>
+                                <td>
+                                    <a href="@Url.Action("AddEditUsuarios", new { UsuarioId = item.UsuarioId })" class="btn btn-default">
+                                        <i class="fa fa-edit"></i>&nbsp; Editar
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("DeleteUsuarios", new { UsuarioId = item.UsuarioId })" class="btn btn-default">
+                                        <i class="fa fa-trash-o"></i>&nbsp; Eliminar
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card-footer small text-muted">@DateTime.Now</div>
+        <div>
+            <a class="btn btn-primary" href="@Url.Action("AddEditUsuarios")">
+                <i class="fa fa-plus"></i>&nbsp; Agregar
+            </a>
+        </div>
+    </div>
+}
+else if (strRol == "ADM")
+{
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-table"></i> @ViewBag.Title
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Paterno</th>
+                            <th>Materno</th>
+                            <th>Estatus</th>
+                            <th>Rol</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Paterno</th>
+                            <th>Materno</th>
+                            <th>Estatus</th>
+                            <th>Rol</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model.LstUsuarios)
+                        {
+                            <tr>
+                                <td>@item.Nombre</td>
+                                <td>@item.Paterno</td>
+                                <td>@item.Materno</td>
+                                <td>@item.Estatus.Descripcion</td>
+                                <td>@item.Roles.Descripcion</td>
+                                <td>
+                                    <a href="@Url.Action("AddEditUsuarios", new { UsuarioId = item.UsuarioId })" class="btn btn-default">
+                                        <i class="fa fa-edit"></i>&nbsp; Editar
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("DeleteUsuarios", new { UsuarioId = item.UsuarioId })" class="btn btn-default">
+                                        <i class="fa fa-trash-o"></i>&nbsp; Eliminar
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card-footer small text-muted">@DateTime.Now</div>
+        <div>
+            <a class="btn btn-primary" href="@Url.Action("AddEditUsuarios")">
+                <i class="fa fa-plus"></i>&nbsp; Agregar
+            </a>
+        </div>
+    </div>
+}
+else if (strRol == "JUG")
+{
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-table"></i> @ViewBag.Title
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Paterno</th>
+                            <th>Materno</th>
+                            <th>Rol</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Paterno</th>
+                            <th>Materno</th>
+                            <th>Rol</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model.LstUsuarios)
+                        {
+                            <tr>
+                                <td>@item.Nombre</td>
+                                <td>@item.Paterno</td>
+                                <td>@item.Materno</td>
+                                <td>@item.Roles.Descripcion</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer small text-muted">@DateTime.Now</div>
+    </div>
+}
+else if (strRol == "REP")
+{
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-table"></i> @ViewBag.Title
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Paterno</th>
+                            <th>Materno</th>
+                            <th>Rol</th>
+                            <th>Editar</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Paterno</th>
+                            <th>Materno</th>
+                            <th>Rol</th>
+                            <th>Editar</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model.LstUsuarios)
+                        {
+                            <tr>
+                                <td>@item.Nombre</td>
+                                <td>@item.Paterno</td>
+                                <td>@item.Materno</td>
+                                <td>@item.Roles.Descripcion</td>
+                                <td>
+                                    <a href="@Url.Action("AddEditUsuarios", new { UsuarioId = item.UsuarioId })" class="btn btn-default">
+                                        <i class="fa fa-edit"></i>&nbsp; Editar
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer small text-muted">@DateTime.Now</div>
+        <div>
+            <a class="btn btn-primary" href="@Url.Action("AddEditUsuarios")">
+                <i class="fa fa-plus"></i>&nbsp; Agregar
+            </a>
+        </div>
+    </div>
+}

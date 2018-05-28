@@ -1,0 +1,63 @@
+﻿@model LBP.Web.ViewModels.Liga.LstTemporadaViewModel
+@{
+    ViewBag.Title = "Lista de Temporadas";
+
+    String strRol = String.Empty;
+
+    if (Session["objUsuario"] != null)
+    {
+        strRol = ((LBP.Web.Models.Usuarios)Session["objUsuario"]).Roles.Acronimo;
+    }
+}
+
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> @ViewBag.Title
+    </div>
+    <div class="card-body">
+        <form class="form" method="post" action="@Url.Action("LstTemporada")">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Descripción</th>
+                            <th colspan="2">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Descripción</th>
+                            <th colspan="2">Opciones</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        <tr aling="Center">
+                            @foreach (var item in Model.LstTemporada)
+                            {
+                            <tr>
+                                <td>@item.Descripcion</td>
+                                <td>
+                                    <a href="@Url.Action("AddEditTemporada", new { TemporadaId = item.TemporadaId})" class="btn btn-default">
+                                        <i class="fa fa-edit"></i>&nbsp; Editar
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("DeleteTemporada", new {TemporadaId = item.TemporadaId})" class="btn btn-default">
+                                        <i class="fa fa-trash-o"></i>&nbsp; Eliminar
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a class="btn btn-primary" href="@Url.Action("AddEditTemporada")">
+            <i class="fa fa-plus"></i>&nbsp; Agregar
+        </a>
+    </div>
+

@@ -1,0 +1,96 @@
+﻿@model LBP.Web.ViewModels.LstEquiposViewModel
+@{
+    ViewBag.Title = "Lista de Equipos";
+
+    String strRol = String.Empty;
+
+    if (Session["objUsuario"] != null)
+    {
+        strRol = ((LBP.Web.Models.Usuarios)Session["objUsuario"]).Roles.Acronimo;
+    }
+}
+@if (strRol == "DES" || strRol == "ADM")
+{
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa form-search"></i> @ViewBag.Title
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model.LstEquipos)
+                        {
+                            <tr>
+                                <td>@item.Nombre</td>
+                                <td>
+                                    <a href="@Url.Action("AddEditEquipos", new { EquipoId = item.EquipoId })" class="btn btn-default">
+                                        <i class="fa fa-edit"></i>&nbsp; Editar
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("DeleteEquipos", new { EquipoId = item.EquipoId })" class="btn btn-default">
+                                        <i class="fa fa-trash-o"></i>&nbsp; Eliminar
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer small text-muted">@DateTime.Now</div>
+    </div>
+        <div>
+            <a class="btn btn-primary" href="@Url.Action("AddEditEquipos")">
+                <i class="fa fa-plus"></i>&nbsp; Agregar
+            </a>
+        </div>
+}
+else if (strRol == "JUG" || strRol == "REP")
+{
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa form-search"></i> @ViewBag.Title
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Nombre</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model.LstEquipos)
+                        {
+                            <tr>
+                                <td>@item.Nombre</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer small text-muted">@DateTime.Now</div>
+    </div>
+}

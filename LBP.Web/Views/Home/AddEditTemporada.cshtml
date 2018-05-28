@@ -1,0 +1,33 @@
+﻿@model LBP.Web.ViewModels.Liga.AddEditTemporadaViewModel
+
+@{
+    ViewBag.Title = Model.TemporadaId.HasValue ? "Editar Temporada" : "Agregar Temporada";
+}
+
+<div class="container">
+    <div class="card card-register mx-auto mt-5">
+        <div class="card-header">@ViewBag.Title</div>
+        <div class="card-body">
+            <form method="post" action="@Url.Action("AddEditTemporada")">
+                @Html.HiddenFor(X => X.TemporadaId)
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <label for="exampleInputName">Descripción</label>
+                            @Html.TextBoxFor(X => X.Descripcion, new { @class = "form-control",
+                           style = "text-transform:uppercase",
+                           name = "nombre"
+                       })
+                        </div>
+                 </div>
+                </div>
+                <button type="submit" class="btn btn-primary ">
+                    <i class="fa fa-save"></i>&nbsp;Guardar
+                </button>
+                <a class="btn btn-default" href="@Url.Action("LstTemporada")">
+                    <i class="fa fa-arrow-back"></i>&nbsp;Cancelar
+                </a>
+            </form>
+        </div>
+    </div>
+</div>

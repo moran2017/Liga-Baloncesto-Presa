@@ -1,0 +1,103 @@
+﻿@model LBP.Web.ViewModels.Partido.AddEditPartidosViewModel
+
+@{
+    ViewBag.Title = Model.PartidoId.HasValue ? "Editar Partido" : "Agregar Partido";
+
+}
+
+<div class="container">
+    <div class="card card-register mx-auto mt-5">
+        <div class="card-header">@ViewBag.Title</div>
+        <div class="card-body">
+            <form method="post" action="@Url.Action("AddEditPartidos")">
+                @Html.HiddenFor(X => X.PartidoId)
+                <div class="form-group">
+                    <div-- class="form-row">
+                        <div class="col-md-6">
+                                <label for="exampleInputLastName">Temporada</label>
+                                @Html.DropDownListFor(X => X.TemporadaId, new SelectList(Model.LstTemporada,
+                               "TemporadaId", "Descripcion"), "--------Selecione un Temporada------", new { @class = "form-control" })
+                            </div>
+                            <div class="col-md-6">
+                                <label for="exampleInputLastName">Jornada</label>
+                                @Html.DropDownListFor(X => X.JornadaId, new SelectList(Model.LstJornadas,
+                               "JornadaId", "Descripcion"), "--------Selecione un Jornada------", new { @class = "form-control" })
+                            </div>  
+                          <div class="col-md-6">
+                              <br />
+                              <label for="exampleInputName">Fecha</label>
+                              <div class="input-group" id="datefield">
+                                  @Html.EditorFor(X => X.Fecha, new { htmlAttributes = new { @class = "form-control", type = "date", value = DateTime.Now.ToString("dd-mm-aaaa") } })
+                                  <span class="input-group-addon">
+                                      <span class="glyphicon glyphicon-calendar"></span>
+                                  </span>
+                              </div>
+                              </div>
+          
+                        <!--div class="col-md-6">
+                            <br />
+                            <label for="exampleInputName">Fecha</label>
+                            <br />
+                            <div class="col-md-6">
+                                <input class="datefield" data-val="true" data-val-required="Fecha Requerida"
+                                       id="Fecha" name="Fecha" type="date" value="@DateTime.Now.ToString("yyyy-mm-dd")"/>
+                            </div>
+                            <br />
+                        </div-->
+
+                        <div class="col-md-6">
+                            <br />
+                            <label for="exampleInputName">Hora</label>
+                            <div class="input-group" id="timefield">
+                                @Html.EditorFor(X => X.Horario, new { htmlAttributes = new { @class = "form-control", type = "time",value = DateTime.Now.ToString("dd-mm-aaaa") } })
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <!--div class="col-md-6">
+                            <br />
+                            <label for="exampleInputName">Horario</label>
+                            <br />
+                            <div class="col-md-6">
+                                <input class="timefield" data-val="true" data-val-required="Hora Requerida"
+                                       id="Hora" name="Hora" type="time" value="@DateTime.Now.ToString("hh:mm")" />
+                            </div>                
+                        </div-->
+                     
+                            <div class="col-md-6">
+                                <br />
+                                <label for="exampleInputLastName">Local</label>
+                                <br />
+                                @Html.DropDownListFor(X => X.EquipoLocalId, new SelectList(Model.LstEquipoLocal, "EquipoId", "Nombre"), "--------Selecione un Equipo------", new { @class = "form-control" })
+                            </div>
+                            <div class="col-md-6">
+                                <br />
+                                <label for="exampleInputName">Puntos Local</label>
+                                @Html.TextBoxFor(X => X.PuntosLocal, new { @class = "form-control" })
+                            </div>
+                            <div class="col-md-6">
+                                <br />
+                                <label for="exampleInputLastName">Visitante</label>
+                                <br />
+                                @Html.DropDownListFor(X => X.EquipoVisitante, new SelectList(Model.LstEquipoVisitante, "EquipoId", "Nombre"), "--------Selecione un Equipo------", new { @class = "form-control" })
+                                
+                            </div>
+                            <div class="col-md-6">
+                                <br />
+                                <label for="exampleInputName">Puntos Visitante</label>
+                                <br />
+                                @Html.TextBoxFor(X => X.PuntosVisitante, new { @class = "form-control" })
+                            </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary ">
+                    <i class="fa fa-save"></i>&nbsp;Guardar
+                </button>
+                <a class="btn btn-default" href="@Url.Action("LstPartidos")">
+                    <i class="fa fa-arrow-back"></i>&nbsp;Cancelar
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
