@@ -47,7 +47,7 @@ namespace LBP.Web.Controllers
             }
             else
             {
-                ViewBag.Error = "Todos lo campos deben ser llenados";
+                ViewBag.Error = "Todos lo campos deben ser llenados por favor";
             }
 
             //Se insertan los valores necesarios en la tabla sesiones
